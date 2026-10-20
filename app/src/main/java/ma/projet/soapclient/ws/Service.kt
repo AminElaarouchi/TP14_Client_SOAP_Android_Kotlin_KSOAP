@@ -9,6 +9,7 @@ import org.ksoap2.transport.HttpTransportSE
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Vector
 
 class Service {
     companion object {
@@ -27,7 +28,9 @@ class Service {
     fun getComptes(): List<Compte> {
         val result = call("getComptes") ?: return emptyList()
         return when (result) {
-            is SoapObject -> (0 until result.propertyCount).mapNotNull { parseCompte(result.getProperty(it)) }
+            is SoapObject -> parseCompte(result)?.let(::listOf)
+                ?: (0 until result.propertyCount).mapNotNull { parseCompte(result.getProperty(it)) }
+            is Vector<*> -> result.mapNotNull(::parseCompte)
             else -> emptyList()
         }
     }
