@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.SoapClient" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#245DB4</item><item name="colorPrimaryVariant">#184582</item>
+        <item name="colorOnPrimary">#FFFFFF</item><item name="colorSecondary">#245DB4</item>
+    </style>
+</resources>
